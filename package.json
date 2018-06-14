@@ -19,11 +19,16 @@
     "preset": "jest-expo"
   },
   "dependencies": {
+    "d3": "^5.4.0",
+    "d3-geo": "^1.10.0",
     "expo": "^27.0.1",
     "ol": "^4.6.5",
     "react": "16.3.1",
+    "react-dom": "^16.4.1",
     "react-native": "~0.55.2",
     "react-native-maps": "^0.21.0",
-    "react-navigation": "^2.2.5"
+    "react-native-svg": "^6.3.1",
+    "react-navigation": "^2.2.5",
+    "topojson-client": "^3.0.0"
   }
 }
