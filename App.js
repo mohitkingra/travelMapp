@@ -60,10 +60,7 @@ class WorldMap extends React.Component {
       var temp= [];      
       temp =  worlddata.objects.countries.geometries.filter(geometry => geometry.id === selectedcountryId);
 
-      temp.forEach(function(geometry){
-        console.log("geometry after-----"+ geometry.id);
-      });
-
+      console.log("temp-----"+ temp);
 
     }
 
