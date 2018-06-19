@@ -4,9 +4,7 @@ import { createStackNavigator } from 'react-navigation';
 import { geoMercator, geoPath } from "d3-geo";
 import { feature } from "topojson-client";
 import Svg, {G, Path} from 'react-native-svg';
-
 import worlddata from './world-110m.json'; 
-//import countrydata from './ISO-3166.csv';
 
 const styles = StyleSheet.create({
   container: {
@@ -23,6 +21,7 @@ const styles = StyleSheet.create({
 
 var selectedcountryName;
 var selectedcountryId;
+var arr;
 
 class WorldMap extends React.Component {
    constructor() {
@@ -44,45 +43,38 @@ class WorldMap extends React.Component {
         worlddata: feature(worlddata, worlddata.objects.countries).features,
       })
 
-      //countrydata.forEach(function(country){
-        //if(country.name === selectedcountryName){
-        //  selectedcountryId = country.country-code;
-        //}
-
-      //});
-
-      selectedcountryId = 356;
-
-      console.log("length before:"+worlddata.objects.countries.geometries.length);
-
-      worlddata.objects.countries.geometries=  worlddata.objects.countries.geometries.filter(function(geometry) {
+      arr = [];
+      var index=0;
+      worlddata.objects.countries.geometries.forEach(function(geometry) {
 
         if(geometry.id == selectedcountryId) {
-          return true;
+          // Update fillstyle
+          arr[index]=1
         }
         else {
-          return false;
+          arr[index] =0;
         }
-    });
-    
-    console.log("length after:"+worlddata.objects.countries.geometries.length);
 
-   this.setState({
-        worlddata: feature(worlddata, worlddata.objects.countries).features,
-      })
+        index++;
+
+    });
+  
     }
 
   render() {
+
     return (
      <Svg width={ 800 } height={ 450 } viewBox="0 0 800 450">
           <G className="countries">
             {
               this.state.worlddata.map((d,i) => (
                 <Path
+                  className="country"
+                  stroke="gray" 
+                  stroke-width="2"
+                  fill={ arr[i] ? 'black' : 'none' }
                   key={ `path-${ i }` }
                   d={ geoPath().projection(this.projection())(d) }
-                  className="country"
-                  fill={ `rgba(0,0,0,${1})` }
                 />
               ))
             }
