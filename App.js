@@ -53,15 +53,23 @@ class WorldMap extends React.Component {
 
       selectedcountryId = 356;
 
-      worlddata.objects.countries.geometries.forEach(function(geometry){
-        console.log("geometry before-----"+ geometry.id);
-      });
+      console.log("length before:"+worlddata.objects.countries.geometries.length);
 
-      var temp= [];      
-      temp =  worlddata.objects.countries.geometries.filter(geometry => geometry.id === selectedcountryId);
+      worlddata.objects.countries.geometries=  worlddata.objects.countries.geometries.filter(function(geometry) {
 
-      console.log("temp-----"+ temp);
+        if(geometry.id == selectedcountryId) {
+          return true;
+        }
+        else {
+          return false;
+        }
+    });
+    
+    console.log("length after:"+worlddata.objects.countries.geometries.length);
 
+   this.setState({
+        worlddata: feature(worlddata, worlddata.objects.countries).features,
+      })
     }
 
   render() {
