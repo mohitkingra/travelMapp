@@ -1,10 +1,12 @@
 import React from 'react';
-import { Button, Text, View, StyleSheet, TouchableHighlight } from 'react-native';
+import { Button, Text, View, StyleSheet } from 'react-native';
 import { createStackNavigator } from 'react-navigation'; 
 import { geoMercator, geoPath } from "d3-geo";
 import { feature } from "topojson-client";
 import Svg, {G, Path} from 'react-native-svg';
 import worlddata from './world-110m.json'; 
+
+import Country from './src/components/country.js';
 
 const styles = StyleSheet.create({
   container: {
@@ -115,12 +117,8 @@ class HomeScreen extends React.Component {
     return (
       <View style={styles.container}>
         <Text>Select Countries</Text>
-        <View style={[styles.button, {backgroundColor:this.state.color}]}>
-          <Button
-            title="India"
-            onPress={this.onButtonPress}
-          />
-        </View>
+        <Country name="India" />
+        <Country name="China" />
         <Button
             title="Show Travel Map"
             onPress={() => this.props.navigation.navigate('Details')}
