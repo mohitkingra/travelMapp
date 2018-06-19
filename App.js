@@ -87,31 +87,6 @@ class WorldMap extends React.Component {
 }
 
 class HomeScreen extends React.Component {
-  constructor() {
-    
-    super();
-    
-    this.state = { 
-      color: 'white'
-    }
-  }
-  
-  onButtonPress = () => {
-
-    if(this.state.color === 'white') {
-      this.setState({
-        color: 'gray'
-      })
-
-      selectedcountry = "India";
-
-    }
-    else {
-      this.setState({
-        color: 'white'
-      })
-    }
-  }
 
   render() {
     return (

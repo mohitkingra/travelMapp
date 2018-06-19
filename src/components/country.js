@@ -10,6 +10,14 @@ const styles = StyleSheet.create({
 });
 
 class Country extends React.Component {
+    constructor() {
+    
+    super();
+    
+    this.state = { 
+      color: 'white'
+    }
+  }
   
   	onButtonPress = () => {
 
@@ -17,8 +25,6 @@ class Country extends React.Component {
       	this.setState({
         	color: 'gray'
       	})
-
-      	selectedcountry = this.props.name;
 
     	}
     	else {
@@ -31,11 +37,11 @@ class Country extends React.Component {
 	render(){
 		return(
 			<View style={[styles.button, {backgroundColor:this.state.color}]}>
-          		<Button
-            		title={this.props.name}
-            		onPress={this.onButtonPress}
-          		/>
-        	</View>
-        )
+        <Button
+          title={this.props.name}
+          onPress={this.onButtonPress}
+        />
+      </View>
+    );
 	}
 }
