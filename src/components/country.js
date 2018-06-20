@@ -9,7 +9,7 @@ const styles = StyleSheet.create({
   },
 });
 
-class Country extends React.Component {
+export default class Country extends React.Component {
     constructor() {
     
     super();
@@ -45,3 +45,4 @@ class Country extends React.Component {
     );
 	}
 }
+
