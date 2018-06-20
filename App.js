@@ -6,7 +6,7 @@ import { feature } from "topojson-client";
 import Svg, {G, Path} from 'react-native-svg';
 import worlddata from './world-110m.json'; 
 
-import Country from './src/components/country.js';
+import Continent from './src/components/continent.js';
 
 const styles = StyleSheet.create({
   container: {
@@ -91,9 +91,17 @@ class HomeScreen extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text>Select Countries</Text>
-        <Country name="India" />
-        <Country name="China" />
+        <Button
+            title="Build Travel Map"
+            onPress={()=> null}
+        />        
+        <Continent name="Africa" />
+        <Continent name="Asia" />
+        <Continent name="Australia" />
+        <Continent name="Europe" />
+        <Continent name="North America" />
+        <Continent name="South America" />
+        <Continent name="Antartica" />
         <Button
             title="Show Travel Map"
             onPress={() => this.props.navigation.navigate('Details')}
@@ -108,7 +116,10 @@ class DetailsScreen extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text>Your Travel Map</Text>
+        <Button
+          title="Your Travel Map"
+          onPress={() => null}
+        />        
         <WorldMap />
         <Button
           title="Back"

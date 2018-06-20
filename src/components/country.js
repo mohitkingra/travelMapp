@@ -10,13 +10,12 @@ const styles = StyleSheet.create({
 });
 
 export default class Country extends React.Component {
-    constructor() {
-    
-    super();
-    
-    this.state = { 
-      color: 'white'
-    }
+    constructor(props) {
+      super(props);
+
+      this.state = { 
+        color: 'white'
+      }
   }
   
   	onButtonPress = () => {
@@ -26,6 +25,9 @@ export default class Country extends React.Component {
         	color: 'gray'
       	})
 
+        if(this.props.name === "Africa") {
+          this.props.listContinent();
+        }
     	}
     	else {
       	this.setState({
