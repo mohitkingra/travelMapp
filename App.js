@@ -1,6 +1,14 @@
 import React from 'react';
 import { Button, Text, View, StyleSheet } from 'react-native';
 import { createStackNavigator } from 'react-navigation'; 
+
+import continentReducers from './src/reducers/continent.js';
+
+import { createStore, combineReducers } from 'redux';
+import { Provider } from 'react-redux';
+
+let store = createStore(combineReducers({continentReducers}));
+
 import { geoMercator, geoPath } from "d3-geo";
 import { feature } from "topojson-client";
 import Svg, {G, Path} from 'react-native-svg';
@@ -146,6 +154,10 @@ const RootStack = createStackNavigator(
 
 export default class App extends React.Component {
   render() {
-    return <RootStack />;
+      return(
+        <Provider store={store}>
+          <RootStack />
+        </Provider>
+      );
   }
 }
