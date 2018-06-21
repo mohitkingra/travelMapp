@@ -10,9 +10,8 @@ const styles = StyleSheet.create({
 });
 
 import Item from './item.js';
-import Country from './country.js';
 
-export default class Continent extends React.Component {
+export default class City extends React.Component {
     constructor(props) {  
     super(props);
 
@@ -20,11 +19,11 @@ export default class Continent extends React.Component {
       select: -1,
     }
 
-    this.selectContinent = this.selectContinent.bind(this);
+    this.selectCity = this.selectCity.bind(this);
 
   }
 
-  selectContinent(){
+  selectCity(){
     if(this.props.name === "Africa") {
       this.setState({
         select:0,
@@ -60,27 +59,14 @@ export default class Continent extends React.Component {
         select:6,
       })
     }
-  }
-
-
-  renderContinent() {
-    if(this.state.select === -1){
-      return(<Item id="Continent" name= {this.props.name} selectContinent= {this.selectContinent} />);
-    }
-    else if(this.state.select === 0){
-      return(
-        <React.Fragment>
-          <Country name="Kenya" />
-          <Country name="Tanzania" />
-        </React.Fragment>
-        );
-    }
-    else{
-      return null;
+    else {
+      this.setState({
+        select:-1,
+      })
     }
   }
 
   render(){
-    return(this.renderContinent());
+      return(<Item id="City" name= {this.props.name} selectCity= {this.selectCity} />);
   }
 }

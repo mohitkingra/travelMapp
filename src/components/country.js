@@ -9,42 +9,82 @@ const styles = StyleSheet.create({
   },
 });
 
+import Item from './item.js';
+import City from './city.js';
+
 export default class Country extends React.Component {
-    constructor(props) {
-      super(props);
+    constructor(props) {  
+    super(props);
 
-      this.state = { 
-        color: 'white'
-      }
+    this.state = {
+      select: -1,
+    }
+
+    this.selectCountry = this.selectCountry.bind(this);
+
   }
-  
-  	onButtonPress = () => {
 
-    	if(this.state.color === 'white') {
-      	this.setState({
-        	color: 'gray'
-      	})
+  selectCountry(){
+    if(this.props.name === "Kenya") {
+      this.setState({
+        select:0,
+      })
+    }
+    else  if(this.props.name === "Tanzania") {
+      this.setState({
+        select:1,
+      })
+    }
+    else  if(this.props.name === "Oceania") {
+      this.setState({
+        select:2,
+      })
+    }
+    else  if(this.props.name === "Europe") {
+      this.setState({
+        select:3,
+      })
+    }
+    else  if(this.props.name === "North America") {
+      this.setState({
+        select:4,
+      })
+    }
+    else  if(this.props.name === "South America") {
+      this.setState({
+        select:5,
+      })
+    }
+    else  if(this.props.name === "Antartica") {
+      this.setState({
+        select:6,
+      })
+    }
+    else {
+      this.setState({
+        select:-1,
+      })
+    }
+  }
 
-        if(this.props.name === "Africa") {
-          this.props.listContinent();
-        }
-    	}
-    	else {
-      	this.setState({
-        	color: 'white'
-      	})
-    	}
-  	}
-	
-	render(){
-		return(
-			<View style={[styles.button, {backgroundColor:this.state.color}]}>
-        <Button
-          title={this.props.name}
-          onPress={this.onButtonPress}
-        />
-      </View>
-    );
-	}
+
+  renderCountry() {
+    if(this.state.select === -1){
+      return(<Item id="Country" name= {this.props.name} selectCountry= {this.selectCountry} />);
+    }
+    else if(this.state.select === 0){
+      return(
+        <React.Fragment>
+          <City name="Nairobi" />
+          <City name="Nakuro" />
+        </React.Fragment>
+        );
+    }
+    else{
+      return null;
+    }
+  }
+  render(){
+    return(this.renderCountry());
+  }
 }
-

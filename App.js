@@ -87,21 +87,21 @@ class WorldMap extends React.Component {
 }
 
 class HomeScreen extends React.Component {
-
+  
   render() {
     return (
       <View style={styles.container}>
         <Button
             title="Build Travel Map"
             onPress={()=> null}
-        />        
+        />
         <Continent name="Africa" />
         <Continent name="Asia" />
-        <Continent name="Australia" />
+        <Continent name="Oceania" />
         <Continent name="Europe" />
         <Continent name="North America" />
         <Continent name="South America" />
-        <Continent name="Antartica" />
+        <Continent name="Antartica" />        
         <Button
             title="Show Travel Map"
             onPress={() => this.props.navigation.navigate('Details')}
