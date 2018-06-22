@@ -16,6 +16,14 @@ import worlddata from './world-110m.json';
 
 import Continent from './src/components/continent.js';
 
+const mapStateToProps = (state) => {
+ return { };
+}
+
+const mapDispatchToProps = (dispatch) => {
+ return { };
+}
+
 const styles = StyleSheet.create({
   container: {
    flex: 1,
@@ -161,3 +169,5 @@ export default class App extends React.Component {
       );
   }
 }
+
+export default connect(mapStateToProps, mapDispatchToProps)(HomeScreen);
