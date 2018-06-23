@@ -27,12 +27,18 @@ export default class Item extends React.Component {
   
 
       if(this.props.id === "Continent"){
-        this.props.selectContinent();
+        this.props.selectContinent(this.props.name);
       }
 
       if(this.props.id === "Country"){
-        this.props.selectCountry();
+        this.props.selectCountry(this.props.name);
       }
+
+      if(this.props.name === "Back to Countries" || this.props.name === "Back to Continents"){
+          this.setState({
+            color: 'white'
+          })
+        }
 
     	}
     	else {

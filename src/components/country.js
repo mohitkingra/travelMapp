@@ -24,38 +24,38 @@ export default class Country extends React.Component {
 
   }
 
-  selectCountry(){
-    if(this.props.name === "Kenya") {
+  selectCountry(country){
+    if(country === "Kenya") {
       this.setState({
         select:0,
       })
     }
-    else  if(this.props.name === "Tanzania") {
+    else  if(country === "Tanzania") {
       this.setState({
         select:1,
       })
     }
-    else  if(this.props.name === "Oceania") {
+    else  if(country === "Oceania") {
       this.setState({
         select:2,
       })
     }
-    else  if(this.props.name === "Europe") {
+    else  if(country === "Europe") {
       this.setState({
         select:3,
       })
     }
-    else  if(this.props.name === "North America") {
+    else  if(country === "North America") {
       this.setState({
         select:4,
       })
     }
-    else  if(this.props.name === "South America") {
+    else  if(country === "South America") {
       this.setState({
         select:5,
       })
     }
-    else  if(this.props.name === "Antartica") {
+    else  if(country === "Antartica") {
       this.setState({
         select:6,
       })
@@ -69,14 +69,31 @@ export default class Country extends React.Component {
 
 
   renderCountry() {
+
     if(this.state.select === -1){
-      return(<Item id="Country" name= {this.props.name} selectCountry= {this.selectCountry} />);
+      if(this.props.id === "Africa"){
+        return(
+          <React.Fragment>
+            <Item id="Country" name= "Kenya" selectCountry= {this.selectCountry} />
+            <Item id="Country" name= "Tanzania" selectCountry= {this.selectCountry} />
+          </React.Fragment>
+        );
+      }
+      else if(this.props.id === "Asia"){
+        return(
+          <React.Fragment>
+            <Item id="Country" name= "India" selectCountry= {this.selectCountry} />
+            <Item id="Country" name= "China" selectCountry= {this.selectCountry} />
+          </React.Fragment>
+        );
+      }
     }
     else if(this.state.select === 0){
       return(
         <React.Fragment>
-          <City name="Nairobi" />
-          <City name="Nakuro" />
+          <Item id="Country" name="Kenya" selectCountry= {this.selectCountry} />
+          <City id="Kenya" />
+          <Item id="Country" name="Back to Countries" selectCountry= {this.selectCountry} />
         </React.Fragment>
         );
     }

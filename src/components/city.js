@@ -67,6 +67,16 @@ export default class City extends React.Component {
   }
 
   render(){
-      return(<Item id="City" name= {this.props.name} selectCity= {this.selectCity} />);
+
+    if(this.state.select === -1){
+      if(this.props.id === "Kenya"){
+        return(
+          <React.Fragment>
+            <Item id="City" name= "Nairobi" selectCity= {this.selectCity} />
+            <Item id="City" name= "Nakuru" selectCity= {this.selectCity} />
+          </React.Fragment>
+          );
+      }
+    }
   }
 }

@@ -111,13 +111,7 @@ class HomeScreen extends React.Component {
             title="Build Travel Map"
             onPress={()=> null}
         />
-        <Continent name="Africa" />
-        <Continent name="Asia" />
-        <Continent name="Oceania" />
-        <Continent name="Europe" />
-        <Continent name="North America" />
-        <Continent name="South America" />
-        <Continent name="Antartica" />        
+        <Continent />        
         <Button
             title="Show Travel Map"
             onPress={() => this.props.navigation.navigate('Details')}
@@ -170,4 +164,4 @@ export default class App extends React.Component {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(HomeScreen);
+//export default connect(mapStateToProps, mapDispatchToProps)(HomeScreen);
