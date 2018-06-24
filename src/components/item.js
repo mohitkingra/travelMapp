@@ -26,20 +26,17 @@ export default class Item extends React.Component {
       	this.setState({
         	color: 'gray'
       	})
-
-        if(this.props.id.substring(0,9) === "Continent"){
-          this.props.toggleContinent(this.props.name);
-        }
       }
-    	else {
+      else {
       	this.setState({
         	color: 'white'
       	})
-
-        if(this.props.id.substring(0,9) === "Continent"){
-          this.props.toggleContinent(this.props.name);
-        }
       }
+      
+      if(this.props.id.substring(0,9) === "Continent"){
+          this.props.toggleContinent(this.props.name);
+      }
+
   }
 
 	render(){
