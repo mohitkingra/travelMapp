@@ -2,27 +2,18 @@ import React from 'react';
 import { Button, Text, View, StyleSheet } from 'react-native';
 import { createStackNavigator } from 'react-navigation'; 
 
-import continentReducers from './src/reducers/continent.js';
-
 import { createStore, combineReducers } from 'redux';
 import { Provider } from 'react-redux';
 
-let store = createStore(combineReducers({continentReducers}));
+import continentReducer from './src/reducers/index.js';
+let store = createStore(combineReducers({continentReducer}));
 
 import { geoMercator, geoPath } from "d3-geo";
 import { feature } from "topojson-client";
 import Svg, {G, Path} from 'react-native-svg';
 import worlddata from './world-110m.json'; 
 
-import Continent from './src/components/continent.js';
-
-const mapStateToProps = (state) => {
- return { };
-}
-
-const mapDispatchToProps = (dispatch) => {
- return { };
-}
+import ContinentList  from './src/containers/continent.js';
 
 const styles = StyleSheet.create({
   container: {
@@ -111,7 +102,7 @@ class HomeScreen extends React.Component {
             title="Build Travel Map"
             onPress={()=> null}
         />
-        <Continent />        
+        <ContinentList />        
         <Button
             title="Show Travel Map"
             onPress={() => this.props.navigation.navigate('Details')}
@@ -163,5 +154,3 @@ export default class App extends React.Component {
       );
   }
 }
-
-//export default connect(mapStateToProps, mapDispatchToProps)(HomeScreen);
