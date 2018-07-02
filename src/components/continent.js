@@ -11,11 +11,11 @@ const data = [
   {
   title: 'Africa',
   level:0, 
-  items: [
+  countries: [
     {
       title: 'Kenya',
       level:1,
-      items: [{
+      cities: [{
         title: 'Nairobi',
         level:2,
       }]
@@ -23,7 +23,7 @@ const data = [
     {
       title: 'Tanzania',
       level:1,
-      items: [{
+      cities: [{
         title: 'Moshi',
         level:2,
       }]
@@ -32,11 +32,11 @@ const data = [
   {
   title: 'Asia', 
   level: 0,
-  items: [
+  countries: [
     {
       title: 'India',
       level:1,
-      items: [{
+      cities: [{
         title: 'New Delhi',
         level:2,
       }]
@@ -44,7 +44,7 @@ const data = [
     {
       title: 'China',
       level:1,
-      items: [{
+      cities: [{
         title: 'Shenzhen',
         level:2,
       }]
@@ -75,42 +75,43 @@ export default class ContinentList extends React.Component {
       }
   }
 
+  getChildrenName = (node) => {
+    if(node.level === 0)
+      return 'countries';
+    else if(node.level === 1)
+      return 'cities';
+  }
 
   onNodePressed = (node) => {
 
     if(node.level === 2 ){
 
-    if(this.state.color === 'white'){
-       this.setState({
-          color: 'gray'
-        }) 
-    }
-    else{
-
-        this.setState({
-          color: 'white'
+      if(this.state.color === 'white'){
+         this.setState({
+            color: 'gray'
+          })
+      }
+      else{
+          this.setState({
+            color: 'white'
         })
-    }
+    }  
   }
+
+
   }
 
   render(){    
-      //var continentList = this.props.continents;
-
-      //continentList = continentList.filter(continent => continent.select ===1);
-
-      //if(continentList.length === 0)
-      //  continentList = this.props.continents;
 
       return(
         <View style={styles.container}>
           <NestedListview
             data={data}
-            getChildrenName={(node) => 'items'}
+            getChildrenName={this.getChildrenName}
             onNodePressed={this.onNodePressed}
             renderNode={(node, level) => (
             <NestedRow level={level}>
-              <View style={[styles.button, {backgroundColor: this.state.color, paddingLeft: (level + 1)*30}]}>
+              <View style={[styles.button, {backgroundColor: this.state.color}]}>
                 <Text>{node.title}</Text>
               </View>
             </NestedRow>
@@ -120,13 +121,3 @@ export default class ContinentList extends React.Component {
       );
     }
 }
-
-//ContinentList.propTypes = {
-//  continents: PropTypes.arrayOf(
-//    PropTypes.shape({
-//      select: PropTypes.Number,
-//      name: PropTypes.string
-//    })
-//  ),
-//  toggleContinent: PropTypes.func
-//};
