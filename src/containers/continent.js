@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { toggleContinent } from '../actions/index.js';
+import { toggleContinent, toggleCountry } from '../actions/index.js';
 import ContinentList  from '../components/continent.js';
 
 function mapStateToProps(state) {
@@ -11,6 +11,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
 	return {
 		toggleContinent: name => dispatch(toggleContinent(name)),
+		toggleCountry: name => dispatch(toggleCountry(name)),
 	}
 }
 

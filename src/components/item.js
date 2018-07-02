@@ -37,6 +37,11 @@ export default class Item extends React.Component {
           this.props.toggleContinent(this.props.name);
       }
 
+
+      if(this.props.id.substring(0,7) === "Country"){
+          this.props.toggleCountry(this.props.name);
+      }
+
   }
 
 	render(){
