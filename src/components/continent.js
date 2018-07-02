@@ -7,7 +7,50 @@ import Item from './item.js';
 
 import NestedListview, { NestedRow } from 'react-native-nested-listview';
 
-const data = [{title: 'Node 1', items: [{title: 'Node 1.1'}, {title: 'Node 1.2'}]}]
+const data = [
+  {
+  title: 'Africa',
+  level:0, 
+  items: [
+    {
+      title: 'Kenya',
+      level:1,
+      items: [{
+        title: 'Nairobi',
+        level:2,
+      }]
+    }, 
+    {
+      title: 'Tanzania',
+      level:1,
+      items: [{
+        title: 'Moshi',
+        level:2,
+      }]
+    }]
+  },
+  {
+  title: 'Asia', 
+  level: 0,
+  items: [
+    {
+      title: 'India',
+      level:1,
+      items: [{
+        title: 'New Delhi',
+        level:2,
+      }]
+    }, 
+    {
+      title: 'China',
+      level:1,
+      items: [{
+        title: 'Shenzhen',
+        level:2,
+      }]
+    }]
+  },
+  ]
 
 const styles = StyleSheet.create({
   container: {
@@ -17,6 +60,7 @@ const styles = StyleSheet.create({
   },
   button: {
     borderColor: 'gray',
+    padding: 10,
     borderWidth: 1,
     borderRadius: 10,
   },
@@ -25,6 +69,29 @@ const styles = StyleSheet.create({
 export default class ContinentList extends React.Component {
   constructor(props) {  
       super(props);
+
+      this.state={
+        color:'white'
+      }
+  }
+
+
+  onNodePressed = (node) => {
+
+    if(node.level === 2 ){
+
+    if(this.state.color === 'white'){
+       this.setState({
+          color: 'gray'
+        }) 
+    }
+    else{
+
+        this.setState({
+          color: 'white'
+        })
+    }
+  }
   }
 
   render(){    
@@ -40,9 +107,12 @@ export default class ContinentList extends React.Component {
           <NestedListview
             data={data}
             getChildrenName={(node) => 'items'}
+            onNodePressed={this.onNodePressed}
             renderNode={(node, level) => (
-            <NestedRow level={level}  /*style={styles.button}*/>
-              <Text>{node.title}</Text>
+            <NestedRow level={level}>
+              <View style={[styles.button, {backgroundColor: this.state.color, paddingLeft: (level + 1)*30}]}>
+                <Text>{node.title}</Text>
+              </View>
             </NestedRow>
             )}
           />
