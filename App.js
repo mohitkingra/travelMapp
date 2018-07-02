@@ -13,7 +13,7 @@ import { feature } from "topojson-client";
 import Svg, {G, Path} from 'react-native-svg';
 import worlddata from './world-110m.json'; 
 
-import ContinentList  from './src/components/continent.js';
+import ContinentList  from './src/containers/continent.js';
 
 const styles = StyleSheet.create({
   container: {

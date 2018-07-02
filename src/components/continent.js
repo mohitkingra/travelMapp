@@ -75,10 +75,18 @@ export default class ContinentList extends React.Component {
 
 //filter continents
       var continentList = this.props.continents;
+
       continentList = continentList.filter(continent => continent.select ===1);
       if(continentList.length === 0){
         continentList = this.props.continents;
       }
+
+      var continents = [];
+      continents = continentList.map((continent, index) => {
+        return(
+          <Item key={"Continent" + index} id={"Continent" + index} name={continent.name} toggleContinent={this.props.toggleContinent} />
+          );
+      })    
 
 //filter countries
       var countries = [];
@@ -88,34 +96,28 @@ export default class ContinentList extends React.Component {
           countries = continentList[0].countries.map((country, index) => {
           return(
             <Item key={"Country" + index} id={"Country" + index} name={country.name} toggleCountry={this.props.toggleCountry} />
-            );
-        });
-      }
-
-      /*if(continentList.length ===1){
-
+          );
+        })
+    
         var selectedCountries =  continentList[0].countries.filter(country => country.select === 1);
         
         if(selectedCountries.length === 1){
-
           cities = selectedCountries[0].cities.map((city, index) => {
           return(
-            <Item key={"City" + index} id={"Country" + index} name={country.name} toggleCity={this.props.toggleCity} />
+            <Item key={"City" + index} id={"City" + index} name={city.name} toggleCity={this.props.toggleCity} />
             );
           });
+          
         }
-      }*/
+      }
 
       return(
-        continentList.map((continent, index) => {     
-          return(
-            <React.Fragment>
-              <Item key={"Continent" + index} id={"Continent" + index} name={continent.name} toggleContinent={this.props.toggleContinent} />
-              {countries}
-            </React.Fragment>
-          );        
-        })
-      );
+        <React.Fragment>
+          {continents}
+          {countries}
+          {cities}
+        </React.Fragment>
+      );        
     }  
 }
 

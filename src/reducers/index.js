@@ -5,7 +5,7 @@ const initialState = {
                   select: 0, 
                   name: "Africa", 
                   countries:[
-                  {
+                    {
                       select: 0,
                       name: "Kenya",
                       cities: [
@@ -19,7 +19,7 @@ const initialState = {
                     {
                       select: 0,
                       name: "Tanzania"
-                  }]
+                    }]
                 }, 
                 {
                   select: 0, 
@@ -64,20 +64,13 @@ export default function continentReducer(state = initialState, action) {
       return { ...state, continents: visiblecontinents };
     }
     case 'TOGGLE_COUNTRY': {
-      var index = state.continents.findIndex(continent => continent.select === 1);
-
 
       var visiblecontinents = state.continents.map(continent => {
-        if(continent.select === 1){
-
-          continent.countries.forEach((country) =>{
-            if(country.name === action.name){
-              country.select = country.select ^1;    
-            }
-          });
-        }          
-      }); 
-
+        return continent.select === 1 ? { ...continent, countries : continent.countries.map((country) => {
+            return country.name === action.name ? { ...country, select: country.select ^ 1} : { ...country} })
+        } : { ...continent}
+       }); 
+      
       return { ...state, continents: visiblecontinents};
     }
     default: {
