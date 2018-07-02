@@ -50,8 +50,9 @@ const initialState = {
                 }, 
                 {
                   select: 0, name: "Antartica"
-                }]
-              }
+                }
+              ]
+  }
 
 export default function continentReducer(state = initialState, action) {
   switch (action.type) {

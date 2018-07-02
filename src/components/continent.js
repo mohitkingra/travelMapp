@@ -69,33 +69,8 @@ const styles = StyleSheet.create({
 export default class ContinentList extends React.Component {
   constructor(props) {  
       super(props);
-
-      this.state={
-        color:'white'
-      }
   }
 
-<<<<<<< HEAD
-  getChildrenName = (node) => {
-    if(node.level === 0)
-      return 'countries';
-    else if(node.level === 1)
-      return 'cities';
-  }
-
-  onNodePressed = (node) => {
-
-    if(node.level === 2 ){
-
-      if(this.state.color === 'white'){
-         this.setState({
-            color: 'gray'
-          })
-      }
-      else{
-          this.setState({
-            color: 'white'
-=======
   render(){    
 
 //filter continents
@@ -117,10 +92,7 @@ export default class ContinentList extends React.Component {
         });
       }
 
-//filter cities
-      if(continentList.length ===1){
-
-        alert("00000000");
+      /*if(continentList.length ===1){
 
         var selectedCountries =  continentList[0].countries.filter(country => country.select === 1);
         
@@ -132,7 +104,7 @@ export default class ContinentList extends React.Component {
             );
           });
         }
-      }
+      }*/
 
       return(
         continentList.map((continent, index) => {     
@@ -140,39 +112,13 @@ export default class ContinentList extends React.Component {
             <React.Fragment>
               <Item key={"Continent" + index} id={"Continent" + index} name={continent.name} toggleContinent={this.props.toggleContinent} />
               {countries}
-              {cities}
             </React.Fragment>
-          );
->>>>>>> country
+          );        
         })
-    }  
-  }
-
-<<<<<<< HEAD
-
-  }
-
-  render(){    
-
-      return(
-        <View style={styles.container}>
-          <NestedListview
-            data={data}
-            getChildrenName={this.getChildrenName}
-            onNodePressed={this.onNodePressed}
-            renderNode={(node, level) => (
-            <NestedRow level={level}>
-              <View style={[styles.button, {backgroundColor: this.state.color}]}>
-                <Text>{node.title}</Text>
-              </View>
-            </NestedRow>
-            )}
-          />
-        </View>
       );
-    }
+    }  
 }
-=======
+
 ContinentList.propTypes = {
   continents: PropTypes.arrayOf(
     PropTypes.shape({
@@ -186,4 +132,3 @@ ContinentList.propTypes = {
   toggleCountry: PropTypes.func,
   toggleCity: PropTypes.func,
 };
->>>>>>> country
