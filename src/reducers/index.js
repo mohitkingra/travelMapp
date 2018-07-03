@@ -1,4 +1,4 @@
-import { TOGGLE_CONTINENT } from '../actions/index.js';
+import { TOGGLE_CONTINENT, TOGGLE_COUNTRY, TOGGLE_CITY } from '../actions/index.js';
 
 const initialState = {
   continents: [{
@@ -33,10 +33,24 @@ const initialState = {
                   name: "Asia", 
                   countries:[
                   {
-                    name: "India"
+                    name: "India",
+                    cities: [
+                      {
+                        name: "New Delhi",
+                      },
+                      {
+                        name: "Bangalore",
+                      }]
                   }, 
                   {
-                    name: "China"
+                    name: "China",
+                    cities: [
+                      {
+                        name: "Shenzhen",
+                      },
+                      {
+                        name: "Beijing",
+                      }]
                   }]
                 }, 
                 {
@@ -44,10 +58,24 @@ const initialState = {
                   name: "Oceania",
                   countries:[
                   {
-                    name: "Australia"
+                    name: "Australia",
+                    cities: [
+                      {
+                        name: "Sydney",
+                      },
+                      {
+                        name: "Melbourne",
+                      }]
                   }, 
                   {
-                    name: "New Zealand"
+                    name: "New Zealand",
+                    cities: [
+                      {
+                        name: "Auckland",
+                      },
+                      {
+                        name: "Wellington",
+                      }]
                   }]
                 }, 
                 {
@@ -55,10 +83,24 @@ const initialState = {
                   name: "Europe",
                   countries:[
                   {
-                    name: "Germany"
+                    name: "Germany",
+                    cities: [
+                      {
+                        name: "Berlin",
+                      },
+                      {
+                        name: "Munich",
+                      }]
                   }, 
                   {
-                    name: "France"
+                    name: "France",
+                    cities: [
+                      {
+                        name: "Paris",
+                      },
+                      {
+                        name: "Lyon",
+                      }]
                   }]
                 }, 
                 {
@@ -66,10 +108,24 @@ const initialState = {
                   name: "North America",
                   countries:[
                   {
-                    name: "Canada"
+                    name: "Canada",
+                    cities: [
+                      {
+                        name: "Toronto",
+                      },
+                      {
+                        name: "Vancouver",
+                      }]
                   }, 
                   {
-                    name: "United States"
+                    name: "United States",
+                    cities: [
+                      {
+                        name: "New York",
+                      },
+                      {
+                        name: "Los Angeles",
+                      }]
                   }]
                 }, 
                 {
@@ -77,10 +133,24 @@ const initialState = {
                   name: "South America",
                   countries:[
                   {
-                    name: "Argentina"
+                    name: "Argentina",
+                    cities: [
+                      {
+                        name: "Buones Aires",
+                      },
+                      {
+                        name: "Mendoza",
+                      }]
                   }, 
                   {
-                    name: "Brazil"
+                    name: "Brazil",
+                    cities: [
+                      {
+                        name: "Rio De Janeiro",
+                      },
+                      {
+                        name: "Sao Paulo",
+                      }]
                   }]
                 }, 
                 {
@@ -88,7 +158,10 @@ const initialState = {
                   name: "Antartica",
                   countries:[
                   {
-                    name: "Antartica"
+                    name: "Antartica",
+                    cities: [{
+                      name: "Antartica"
+                    }]
                   }]
                 }
               ]

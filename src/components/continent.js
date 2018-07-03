@@ -49,7 +49,7 @@ export default class ContinentList extends React.Component {
       var continents = [];
       continents = continentList.map((continent, index) => {
         return(
-          <Item key={"Continent" + index} id={"Continent" + index} name={continent.name} highlight={continent.countries.some(country => country.cities.some(city => city.select === 1) === 1)} toggleContinent={this.props.toggleContinent} />
+          <Item key={"Continent" + index} id={"Continent" + index} name={continent.name} highlight={continent.countries.some(country => country.cities.some(city => city.select === 1))} toggleContinent={this.props.toggleContinent} />
           );
       })    
 

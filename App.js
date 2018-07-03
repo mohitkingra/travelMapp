@@ -46,16 +46,15 @@ class WorldMap extends React.Component {
         .scale(60)
         .translate([800/2, 450/2])
     }
-  
-    componentDidMount() {
 
+    componentDidMount() {
+ 
       this.setState({
         worlddata: feature(worlddata, worlddata.objects.countries).features,
       })
 
       arr = [];
-      var index=0;
-      worlddata.objects.countries.geometries.forEach(function(geometry) {
+      worlddata.objects.countries.geometries.forEach(function(geometry, index) {
 
         if(geometry.id == selectedcountryId) {
           // Update fillstyle
@@ -65,14 +64,11 @@ class WorldMap extends React.Component {
           arr[index] =0;
         }
 
-        index++;
-
     });
   
     }
 
   render() {
-
     return (
      <Svg width={ 800 } height={ 450 } viewBox="0 0 800 450">
           <G className="countries">
@@ -128,7 +124,22 @@ class WorldPack extends React.Component {
 */
 
 class HomeScreen extends React.Component {
+  constructor(props) {
+    super(props);
+    
+    this.state={
+      travelMap:[],
+    }
+  }
   
+  componentDidMount(){
+    store.subscribe(() => {
+        this.setState({
+          travelMap: store.getState().continentReducer.continents,
+        })
+    })
+  }
+
   render() {
     return (
       <View style={styles.container}>
