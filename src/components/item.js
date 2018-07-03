@@ -50,7 +50,7 @@ export default class Item extends React.Component {
 
 	render(){
 		return(
-			<View style={[styles.button, {backgroundColor: this.props.select ? 'gray' : 'white'}]}>
+			<View style={[styles.button, {backgroundColor: this.props.highlight ? 'gray' : 'white'}]}>
         <Button
           title={this.props.name}
           onPress={this.onButtonPress}
