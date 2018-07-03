@@ -8,7 +8,7 @@ import Item from './item.js';
 const styles = StyleSheet.create({
   continents: {
    flex: 1,
-   alignItems: 'flex-start',
+   alignItems: 'center',
    justifyContent: 'center',
    flexDirection: 'row',
    width: 400,
@@ -49,7 +49,7 @@ export default class ContinentList extends React.Component {
       var continents = [];
       continents = continentList.map((continent, index) => {
         return(
-          <Item key={"Continent" + index} id={"Continent" + index} name={continent.name} toggleContinent={this.props.toggleContinent} />
+          <Item key={"Continent" + index} id={"Continent" + index} name={continent.name} select={continent.select} toggleContinent={this.props.toggleContinent} />
           );
       })    
 
@@ -61,30 +61,32 @@ export default class ContinentList extends React.Component {
       if(selectedContinent.length === 1){
         countries = selectedContinent[0].countries.map((country, index) => {
           return(
-            <Item key={"Country" + index} id={"Country" + index} name={country.name} toggleCountry={this.props.toggleCountry} />
+            <Item key={"Country" + index} id={"Country" + index} name={country.name} select={country.select} toggleCountry={this.props.toggleCountry} />
             );
         })
 
-        var selectedCountries =  selectedContinent[0].countries.filter(country => country.select === 1);
+        var selectedCountries =  selectedContinent[0].countries.filter(country => country.select === 1);       
         if(selectedCountries.length === 1){
           cities = selectedCountries[0].cities.map((city, index) => {
+            
           return(
-            <Item key={"City" + index} id={"City" + index} name={city.name} toggleCity={this.props.toggleCity} />
+            <Item key={"City" + index} id={"City" + index} name={city.name} select={city.select} toggleCity={this.props.toggleCity} />
             );
           });        
         }
+
       }
 
       return(
           <React.Fragment>
-            <View style={styles.continents}>
-              {continents}
+            <View style={styles.cities}>
+              {cities}
             </View>
             <View style={styles.countries}>
               {countries}
             </View>
-            <View style={styles.cities}>
-              {cities}
+            <View style={styles.continents}>
+              {continents}
             </View>
           </React.Fragment>
       );        

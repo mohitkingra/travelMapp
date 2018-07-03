@@ -138,7 +138,7 @@ class HomeScreen extends React.Component {
         />
         <ContinentList />        
         <Button
-            title="Show Travel Map"
+            title="Show my Travels"
             onPress={() => this.props.navigation.navigate('Details')}
         />
       </View>
