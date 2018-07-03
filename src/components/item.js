@@ -16,23 +16,12 @@ export default class Item extends React.Component {
       super(props);
 
       this.state = {
-        color: 'white'       
+        color: 'white'
       }
   }
   
   onButtonPress = () => {
 
-    	if(this.state.color === 'white') {
-      	this.setState({
-        	color: 'gray'
-      	})
-      }
-      else {
-      	this.setState({
-        	color: 'white'
-      	})
-      }
-      
       if(this.props.id.substring(0,9) === "Continent"){
           this.props.toggleContinent(this.props.name);
       }
@@ -42,11 +31,26 @@ export default class Item extends React.Component {
           this.props.toggleCountry(this.props.name);
       }
 
+      if(this.props.id.substring(0,4) === "City"){
+          this.props.toggleCity(this.props.name);
+      
+          if(this.state.color === 'white'){
+            this.setState({
+              color:'gray'
+            })
+          }
+          else{
+            this.setState({
+              color:'white'
+            })
+          }
+      }
+
   }
 
 	render(){
 		return(
-			<View style={[styles.button, {backgroundColor:this.state.color}]}>
+			<View style={[styles.button, {backgroundColor: this.state.color}]}>
         <Button
           title={this.props.name}
           onPress={this.onButtonPress}

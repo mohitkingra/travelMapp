@@ -18,7 +18,14 @@ const initialState = {
                     },
                     {
                       select: 0,
-                      name: "Tanzania"
+                      name: "Tanzania",
+                      cities: [
+                      {
+                        name: "Arusha",
+                      },
+                      {
+                        name: "Moshi",
+                      }]
                     }]
                 }, 
                 {
@@ -34,22 +41,55 @@ const initialState = {
                 }, 
                 {
                   select: 0, 
-                  name: "Australia"
+                  name: "Oceania",
+                  countries:[
+                  {
+                    name: "Australia"
+                  }, 
+                  {
+                    name: "New Zealand"
+                  }]
                 }, 
                 {
                   select: 0, 
-                  name: "Europe"
+                  name: "Europe",
+                  countries:[
+                  {
+                    name: "Germany"
+                  }, 
+                  {
+                    name: "France"
+                  }]
                 }, 
                 {
                   select: 0, 
-                  name: "North America"
+                  name: "North America",
+                  countries:[
+                  {
+                    name: "Canada"
+                  }, 
+                  {
+                    name: "United States"
+                  }]
                 }, 
                 {
                   select: 0, 
-                  name: "South America"
+                  name: "South America",
+                  countries:[
+                  {
+                    name: "Argentina"
+                  }, 
+                  {
+                    name: "Brazil"
+                  }]
                 }, 
                 {
-                  select: 0, name: "Antartica"
+                  select: 0, 
+                  name: "Antartica",
+                  countries:[
+                  {
+                    name: "Antartica"
+                  }]
                 }
               ]
   }
@@ -58,7 +98,7 @@ export default function continentReducer(state = initialState, action) {
   switch (action.type) {
     case 'TOGGLE_CONTINENT': {
       var visiblecontinents = state.continents.map(continent => {
-        return continent.name === action.name ? { ...continent, select: continent.select ^ 1} : { ...continent}
+        return continent.name === action.name ? { ...continent, select: continent.select ^ 1} : { ...continent, select: 0}
       });      
 
       return { ...state, continents: visiblecontinents };
@@ -67,10 +107,21 @@ export default function continentReducer(state = initialState, action) {
 
       var visiblecontinents = state.continents.map(continent => {
         return continent.select === 1 ? { ...continent, countries : continent.countries.map((country) => {
-            return country.name === action.name ? { ...country, select: country.select ^ 1} : { ...country} })
+            return country.name === action.name ? { ...country, select: country.select ^ 1} : { ...country, select: 0} })
         } : { ...continent}
        }); 
       
+      return { ...state, continents: visiblecontinents};
+    }
+    case 'TOGGLE_CITY': {
+      var visiblecontinents = state.continents.map(continent => {
+        return continent.select === 1 ? { ...continent, countries : continent.countries.map((country) => {
+          return country.select === 1 ? { ...country, cities: country.cities.map((city) => {
+            return city.name === action.name ? { ...city, select: city.select ^ 1} : { ...city}
+          })} : { ...country, select: 0}
+        })} : { ...continent, select: 0}
+      });
+
       return { ...state, continents: visiblecontinents};
     }
     default: {

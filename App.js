@@ -8,6 +8,7 @@ import { Provider } from 'react-redux';
 import continentReducer from './src/reducers/index.js';
 let store = createStore(combineReducers({continentReducer}));
 
+//import * as d3 from "d3";
 import { geoMercator, geoPath } from "d3-geo";
 import { feature } from "topojson-client";
 import Svg, {G, Path} from 'react-native-svg';
@@ -93,13 +94,46 @@ class WorldMap extends React.Component {
   }
 }
 
+/*
+class WorldPack extends React.Component {
+  constructor() {
+      super()
+  }
+  
+  componentDidMount() {
+
+    var svg = d3.select("svg"),
+      margin = 20,
+      diameter = +svg.attr("width"),
+      g = svg.append("g").attr("transform", "translate(" + diameter / 2 + "," + diameter / 2 + ")"
+
+    var color = d3.scaleLinear()
+      .domain([-1, 5])
+      .range(["hsl(152,80%,80%)", "hsl(228,30%,40%)"])
+      .interpolate(d3.interpolateHcl);
+
+    var pack = d3.pack()
+      .size([diameter - margin, diameter - margin])
+      .padding(2);
+
+  }
+
+  render() {
+    return (
+      <Svg width={800} height={450} viewBox="0 0 800 450">
+      </Svg>
+    );
+  }
+}
+*/
+
 class HomeScreen extends React.Component {
   
   render() {
     return (
       <View style={styles.container}>
         <Button
-            title="Build Travel Map"
+            title="Where have you been?"
             onPress={()=> null}
         />
         <ContinentList />        
