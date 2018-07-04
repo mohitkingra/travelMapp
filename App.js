@@ -12,6 +12,8 @@ let store = createStore(combineReducers({continentReducer}));
 import { geoMercator, geoPath } from "d3-geo";
 import { feature } from "topojson-client";
 import Svg, {G, Path} from 'react-native-svg';
+
+//import countrydata from './ISO-3166.csv';
 import worlddata from './world-110m.json'; 
 
 import ContinentList  from './src/containers/continent.js';
@@ -29,34 +31,38 @@ const styles = StyleSheet.create({
   },
 });
 
-var selectedcountryName;
-var selectedcountryId;
-var arr;
+var travelState= [];
+var arr = [];
 
 class WorldMap extends React.Component {
-   constructor() {
+  constructor() {
       super()
       this.state ={
-        worlddata: [],
+        worlddata: feature(worlddata, worlddata.objects.countries).features,
+        traveldata: [],
       }
     }
   
-    projection() {
+  projection() {
       return geoMercator()
         .scale(60)
         .translate([800/2, 450/2])
     }
 
-    componentDidMount() {
- 
-      this.setState({
-        worlddata: feature(worlddata, worlddata.objects.countries).features,
+
+
+  componentDidMount() {
+      
+      travelState.forEach((continent, index) => {
+        continent.countries.forEach((country, index) => {
+          if(country.cities.some(city => city.select === 1)){
+          }
+        })
       })
 
       arr = [];
       worlddata.objects.countries.geometries.forEach(function(geometry, index) {
-
-        if(geometry.id == selectedcountryId) {
+        if(geometry.id == 356) {
           // Update fillstyle
           arr[index]=1
         }
@@ -64,9 +70,13 @@ class WorldMap extends React.Component {
           arr[index] =0;
         }
 
-    });
-  
-    }
+      });
+
+      this.setState({
+        traveldata: travelState,
+      })
+
+  }
 
   render() {
     return (
@@ -78,7 +88,7 @@ class WorldMap extends React.Component {
                   className="country"
                   stroke="gray" 
                   stroke-width="2"
-                  fill={ arr[i] ? 'black' : 'none' }
+                  fill={ arr[i] ? 'gray' : 'none' }
                   key={ `path-${ i }` }
                   d={ geoPath().projection(this.projection())(d) }
                 />
@@ -126,18 +136,18 @@ class WorldPack extends React.Component {
 class HomeScreen extends React.Component {
   constructor(props) {
     super(props);
-    
-    this.state={
-      travelMap:[],
-    }
   }
   
   componentDidMount(){
     store.subscribe(() => {
-        this.setState({
-          travelMap: store.getState().continentReducer.continents,
-        })
-    })
+      
+      travelState = store.getState().continentReducer.continents; 
+
+    })  
+  }
+
+  componentWillUnmount(){
+    store.unsubsribe();
   }
 
   render() {
