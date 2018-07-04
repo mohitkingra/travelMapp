@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Text, View, StyleSheet } from 'react-native';
+import { Button, Text, View, ImageBackground, StyleSheet } from 'react-native';
 import { createStackNavigator } from 'react-navigation'; 
 
 import { createStore, combineReducers } from 'redux';
@@ -23,6 +23,9 @@ const styles = StyleSheet.create({
    flex: 1,
    alignItems: 'center',
    justifyContent: 'center',
+  },
+  backgroundImage: {
+    flex:1,
   },
   button: {
     borderColor: 'gray',
@@ -165,15 +168,17 @@ class HomeScreen extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Button
+        <ImageBackground source={require('./background.jpg')} style={styles.backgroundImage}>
+          <Button
             title="Where have you been?"
             onPress={()=> null}
-        />
-        <ContinentList />        
-        <Button
+          />
+          <ContinentList />        
+          <Button
             title="Show my Travels"
             onPress={() => this.props.navigation.navigate('Details')}
-        />
+          />
+        </ImageBackground>
       </View>
     );
   }

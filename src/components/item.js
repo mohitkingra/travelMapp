@@ -16,7 +16,7 @@ export default class Item extends React.Component {
       super(props);
 
       this.state = {
-        color: 'white'
+        color: 'transparent'
       }
   }
   
@@ -34,14 +34,14 @@ export default class Item extends React.Component {
       if(this.props.id.substring(0,4) === "City"){
           this.props.toggleCity(this.props.name);
       
-          if(this.state.color === 'white'){
+          if(this.state.color === 'transparent'){
             this.setState({
               color:'gray'
             })
           }
           else{
             this.setState({
-              color:'white'
+              color:'transparent'
             })
           }
       }
@@ -50,7 +50,7 @@ export default class Item extends React.Component {
 
 	render(){
 		return(
-			<View style={[styles.button, {backgroundColor: this.props.highlight ? 'gray' : 'white'}]}>
+			<View style={[styles.button, {backgroundColor: this.props.highlight ? 'gray' : 'transparent'}]}>
         <Button
           title={this.props.name}
           onPress={this.onButtonPress}
