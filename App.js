@@ -13,7 +13,7 @@ import { geoMercator, geoPath } from "d3-geo";
 import { feature } from "topojson-client";
 import Svg, {G, Path} from 'react-native-svg';
 
-//import countrydata from './ISO-3166.csv';
+import countrydata from './country.json';
 import worlddata from './world-110m.json'; 
 
 import ContinentList  from './src/containers/continent.js';
@@ -32,7 +32,6 @@ const styles = StyleSheet.create({
 });
 
 var travelState= [];
-var arr = [];
 
 class WorldMap extends React.Component {
   constructor() {
@@ -40,6 +39,7 @@ class WorldMap extends React.Component {
       this.state ={
         worlddata: feature(worlddata, worlddata.objects.countries).features,
         traveldata: [],
+        renderdata: [],
       }
     }
   
@@ -52,28 +52,40 @@ class WorldMap extends React.Component {
 
 
   componentDidMount() {
+
+      var arr = [];
       
       travelState.forEach((continent, index) => {
         continent.countries.forEach((country, index) => {
+
+          //get selected countries name
           if(country.cities.some(city => city.select === 1)){
+            //get country id from name
+                
+            countrydata.forEach((countryData, index) => {
+
+              //update arr for matched countries
+              if(country.name === countryData["name"] ){
+
+                worlddata.objects.countries.geometries.forEach(function(geometry, index) {
+ 
+                  if(geometry.id == countryData["country-code"]) {
+ 
+                    // Update fillstyle
+                    arr[index]=1;
+                  }
+ 
+                });
+              }
+            })
           }
+        
         })
       })
-
-      arr = [];
-      worlddata.objects.countries.geometries.forEach(function(geometry, index) {
-        if(geometry.id == 356) {
-          // Update fillstyle
-          arr[index]=1
-        }
-        else {
-          arr[index] =0;
-        }
-
-      });
-
+      
       this.setState({
         traveldata: travelState,
+        renderdata : arr,
       })
 
   }
@@ -88,7 +100,7 @@ class WorldMap extends React.Component {
                   className="country"
                   stroke="gray" 
                   stroke-width="2"
-                  fill={ arr[i] ? 'gray' : 'none' }
+                  fill={ this.state.renderdata[i] ? 'gray' : 'none' }
                   key={ `path-${ i }` }
                   d={ geoPath().projection(this.projection())(d) }
                 />
